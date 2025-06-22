@@ -456,7 +456,7 @@ export default function PostureFitnessApp() {
             </div>
 
             {/* Journey Table */}
-            <div className="w-full">
+            <div className="w-full overflow-x-auto">
               <table className="w-full border-collapse text-xs">
                 {/* Table Header */}
                 <thead>
