@@ -9,7 +9,7 @@ RUN npm install -g pnpm
 COPY package.json pnpm-lock.yaml ./
 
 # Instalar dependencias
-RUN pnpm install
+RUN pnpm install --prod=false
 
 # Copiar el resto de los archivos
 COPY . .
@@ -18,4 +18,4 @@ COPY . .
 EXPOSE 3000
 
 # Comando para iniciar el servidor de desarrollo
-CMD ["pnpm", "dev"]
+CMD ["pnpm", "dev"] 

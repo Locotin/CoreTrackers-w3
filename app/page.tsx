@@ -21,7 +21,7 @@ import {
   Menu,
   X,
 } from "lucide-react"
-import BusinessModelGraph from "@/components/custom/BusinessModelGraph"
+import { BusinessModelDiagram } from "@/components/custom/BusinessModelDiagram"
 
 export default function PostureFitnessApp() {
   const [activeTab, setActiveTab] = useState("home")
@@ -734,11 +734,342 @@ export default function PostureFitnessApp() {
           </CardContent>
         </Card>
 
-        {/* Business Model Section */}
-        <section className="bg-white p-6 rounded-2xl shadow-sm">
-          <h3 className="text-xl font-semibold text-[#1C1C1E] mb-4">Nuestro Modelo de Negocio</h3>
-          <BusinessModelGraph />
-        </section>
+        {/* Business Model Canvas */}
+        <Card className="border-0 shadow-sm bg-white rounded-3xl">
+          <CardContent className="p-6 lg:p-8">
+            <h2 className="text-2xl font-medium text-[#1C1C1E] mb-6">Modelo de Negocio</h2>
+            <BusinessModelDiagram />
+          </CardContent>
+        </Card>
+
+        {/* Expert Quotes */}
+        <Card className="border-0 shadow-sm bg-white rounded-3xl">
+          <CardContent className="p-6 lg:p-8">
+            <h2 className="text-2xl font-medium text-[#1C1C1E] mb-6 text-center">Aprobación de Expertos</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {[
+                {
+                  quote: "La tecnología de CoreTrackers representa un avance significativo en la prevención de problemas posturales. Su enfoque proactivo puede reducir significativamente los costos de salud laboral.",
+                  author: "Dr. María Elena Sánchez",
+                  title: "Especialista en Medicina del Trabajo",
+                  organization: "Hospital Universitario de Madrid"
+                },
+                {
+                  quote: "Como fisioterapeuta, veo el potencial de este dispositivo para complementar la terapia tradicional. La retroalimentación en tiempo real es invaluable para el paciente.",
+                  author: "Lic. Roberto Jiménez",
+                  title: "Fisioterapeuta Especialista",
+                  organization: "Clínica de Rehabilitación Integral"
+                },
+                {
+                  quote: "La integración de IoT con salud preventiva es el futuro. CoreTrackers está en la vanguardia de esta revolución tecnológica.",
+                  author: "Ing. Patricia Morales",
+                  title: "Directora de Innovación Tecnológica",
+                  organization: "Instituto de Tecnología Avanzada"
+                },
+                {
+                  quote: "Los datos muestran que el 70% de los problemas de espalda se pueden prevenir. Esta solución tecnológica puede cambiar las estadísticas.",
+                  author: "Dr. Alejandro Torres",
+                  title: "Investigador en Biomecánica",
+                  organization: "Universidad Nacional de Ciencias de la Salud"
+                }
+              ].map((expert, index) => (
+                <div key={index} className="p-6 rounded-2xl bg-gradient-to-br from-gray-50 to-[#24C88B]/5 border border-[#24C88B]/10">
+                  <div className="text-2xl text-[#24C88B] mb-4">"</div>
+                  <p className="text-sm text-[#1C1C1E] mb-4 italic">{expert.quote}</p>
+                  <div className="border-t border-[#24C88B]/20 pt-4">
+                    <p className="font-medium text-[#1C1C1E] text-sm">{expert.author}</p>
+                    <p className="text-xs text-[#007AFF]">{expert.title}</p>
+                    <p className="text-xs text-[#1C1C1E] opacity-60">{expert.organization}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Blueprint Section */}
+        <Card className="border-0 shadow-sm bg-white rounded-3xl">
+          <CardContent className="p-6 lg:p-8">
+            <div className="text-center mb-8">
+              <div className="text-4xl mb-4">👕</div>
+              <h2 className="text-2xl font-medium text-[#1C1C1E] mb-2">Blueprint</h2>
+              <h3 className="text-lg text-[#007AFF] mb-4">Camiseta de Postura Inteligente</h3>
+              <p className="text-sm text-[#1C1C1E] opacity-70">Mejorar la postura corporal mediante tecnología wearable</p>
+            </div>
+
+            {/* Journey Table */}
+            <div className="w-full">
+              <table className="w-full border-collapse text-xs">
+                {/* Table Header */}
+                <thead>
+                  <tr>
+                    <th className="bg-gradient-to-r from-[#24C88B] to-[#007AFF] text-white p-2 text-left rounded-l-lg w-[120px]">
+                      Etapas del Journey
+                    </th>
+                    <th colSpan={9} className="bg-gradient-to-r from-[#007AFF] via-[#24C88B] to-[#007AFF] text-white p-2 text-center text-xs font-medium">
+                      <div className="flex justify-between items-center">
+                        {[
+                          "Descubrimiento", "Investigación", "Compra", "Envío", 
+                          "Recepción", "Primera Prueba", "Registro", "Uso Diario", "Adaptación"
+                        ].map((phase, index) => (
+                          <span key={index} className="flex-1 text-center">
+                            {phase}
+                          </span>
+                        ))}
+                      </div>
+                    </th>
+                  </tr>
+                </thead>
+                
+                <tbody>
+                  {/* Necesidades Row */}
+                  <tr className="bg-green-50">
+                    <td className="p-2 border border-gray-200 font-medium">
+                      <div className="flex items-center gap-2">
+                        <div className="w-6 h-6 bg-green-500 rounded flex items-center justify-center text-white text-xs">💡</div>
+                        <div>
+                          <div className="font-medium text-[#1C1C1E] text-xs">Necesidades</div>
+                          <div className="text-xs text-[#1C1C1E] opacity-60">¿Qué necesita?</div>
+                        </div>
+                      </div>
+                    </td>
+                    {[
+                      "Solución para dolor de espalda",
+                      "Información confiable",
+                      "Compra fácil y segura",
+                      "Seguimiento",
+                      "Producto correcto",
+                      "Funcionamiento",
+                      "Configuración simple",
+                      "Recordatorios",
+                      "Formar hábito"
+                    ].map((need, index) => (
+                      <td key={index} className="p-2 border border-gray-200 text-[#1C1C1E] bg-white text-xs">
+                        {need}
+                      </td>
+                    ))}
+                  </tr>
+
+                  {/* Touchpoints Row */}
+                  <tr className="bg-pink-50">
+                    <td className="p-2 border border-gray-200 font-medium">
+                      <div className="flex items-center gap-2">
+                        <div className="w-6 h-6 bg-pink-500 rounded flex items-center justify-center text-white text-xs">📱</div>
+                        <div>
+                          <div className="font-medium text-[#1C1C1E] text-xs">Touchpoints</div>
+                          <div className="text-xs text-[#1C1C1E] opacity-60">Contacto</div>
+                        </div>
+                      </div>
+                    </td>
+                    {[
+                      "TV/Online",
+                      "Redes sociales",
+                      "E-commerce",
+                      "Email/SMS",
+                      "Packaging",
+                      "Manual",
+                      "App móvil",
+                      "App + camiseta",
+                      "Notificaciones"
+                    ].map((touchpoint, index) => (
+                      <td key={index} className="p-2 border border-gray-200 text-[#1C1C1E] bg-white text-xs">
+                        {touchpoint}
+                      </td>
+                    ))}
+                  </tr>
+
+                  {/* Actividades Row */}
+                  <tr className="bg-orange-50">
+                    <td className="p-2 border border-gray-200 font-medium">
+                      <div className="flex items-center gap-2">
+                        <div className="w-6 h-6 bg-orange-500 rounded flex items-center justify-center text-white text-xs">⚡</div>
+                        <div>
+                          <div className="font-medium text-[#1C1C1E] text-xs">Actividades</div>
+                          <div className="text-xs text-[#1C1C1E] opacity-60">Acciones</div>
+                        </div>
+                      </div>
+                    </td>
+                    {[
+                      "Se entera del producto",
+                      "Se interesa en el producto",
+                      "Realiza pago",
+                      "Espera entrega",
+                      "Desempaca",
+                      "Se coloca camiseta",
+                      "Descarga app",
+                      "Usa diariamente",
+                      "Integra rutina"
+                    ].map((activity, index) => (
+                      <td key={index} className="p-2 border border-gray-200 text-[#1C1C1E] bg-white text-xs">
+                        {activity}
+                      </td>
+                    ))}
+                  </tr>
+
+                  {/* Usuario 1 - Home Office */}
+                  <tr className="bg-purple-50">
+                    <td className="p-2 border border-gray-200 font-medium">
+                      <div className="flex items-center gap-2">
+                        <div className="w-6 h-6 bg-purple-500 rounded flex items-center justify-center text-white text-xs">👤</div>
+                        <div>
+                          <div className="font-medium text-[#1C1C1E] text-xs">Home Office</div>
+                          <div className="text-xs text-[#1C1C1E] opacity-60">Usuario</div>
+                        </div>
+                      </div>
+                    </td>
+                    {[
+                      "Busca solución",
+                      "Investiga online",
+                      "Compra desde casa",
+                      "Ansioso por recibir",
+                      "Prueba inmediatamente",
+                      "Evalúa comodidad",
+                      "Configura trabajo",
+                      "Usa 8+ horas",
+                      "Nota mejoras"
+                    ].map((behavior, index) => (
+                      <td key={index} className="p-2 border border-gray-200 text-[#1C1C1E] bg-white text-xs">
+                        {behavior}
+                      </td>
+                    ))}
+                  </tr>
+
+                  {/* Usuario 2 - Deportista */}
+                  <tr className="bg-blue-50">
+                    <td className="p-2 border border-gray-200 font-medium">
+                      <div className="flex items-center gap-2">
+                        <div className="w-6 h-6 bg-blue-500 rounded flex items-center justify-center text-white text-xs">🏃</div>
+                        <div>
+                          <div className="font-medium text-[#1C1C1E] text-xs">Deportista</div>
+                          <div className="text-xs text-[#1C1C1E] opacity-60">Usuario</div>
+                        </div>
+                      </div>
+                    </td>
+                    {[
+                      "Ve en redes",
+                      "Busca testimonios",
+                      "Compra para entrenar",
+                      "Quiere usar pronto",
+                      "Prueba ejercicio",
+                      "Verifica función",
+                      "Sincroniza apps",
+                      "Usa entrenamientos",
+                      "Integra deporte"
+                    ].map((behavior, index) => (
+                      <td key={index} className="p-2 border border-gray-200 text-[#1C1C1E] bg-white text-xs">
+                        {behavior}
+                      </td>
+                    ))}
+                  </tr>
+
+                  {/* Usuario 3 - Estudiante */}
+                  <tr className="bg-green-50">
+                    <td className="p-2 border border-gray-200 font-medium">
+                      <div className="flex items-center gap-2">
+                        <div className="w-6 h-6 bg-green-500 rounded flex items-center justify-center text-white text-xs">🎓</div>
+                        <div>
+                          <div className="font-medium text-[#1C1C1E] text-xs">Estudiante</div>
+                          <div className="text-xs text-[#1C1C1E] opacity-60">Usuario</div>
+                        </div>
+                      </div>
+                    </td>
+                    {[
+                      "Recomendación padres",
+                      "Compara precios",
+                      "Compra limitado",
+                      "Espera paciente",
+                      "Emocionado tecnología",
+                      "Prueba estudiando",
+                      "Explora funciones",
+                      "Usa clases/estudio",
+                      "Forma hábitos"
+                    ].map((behavior, index) => (
+                      <td key={index} className="p-2 border border-gray-200 text-[#1C1C1E] bg-white text-xs">
+                        {behavior}
+                      </td>
+                    ))}
+                  </tr>
+
+                  {/* Usuario 4 - Adulto Mayor */}
+                  <tr className="bg-amber-50">
+                    <td className="p-2 border border-gray-200 font-medium">
+                      <div className="flex items-center gap-2">
+                        <div className="w-6 h-6 bg-amber-600 rounded flex items-center justify-center text-white text-xs">👴</div>
+                        <div>
+                          <div className="font-medium text-[#1C1C1E] text-xs">Adulto Mayor</div>
+                          <div className="text-xs text-[#1C1C1E] opacity-60">Usuario</div>
+                        </div>
+                      </div>
+                    </td>
+                    {[
+                      "Escucha radio/TV",
+                      "Consulta familia",
+                      "Llama para comprar",
+                      "Espera expectativa",
+                      "Necesita ayuda",
+                      "Evalúa comodidad",
+                      "Pide ayuda registro",
+                      "Uso gradual",
+                      "Aprecia mejoras"
+                    ].map((behavior, index) => (
+                      <td key={index} className="p-2 border border-gray-200 text-[#1C1C1E] bg-white text-xs">
+                        {behavior}
+                      </td>
+                    ))}
+                  </tr>
+
+                  {/* Nivel de Satisfacción */}
+                  <tr style={gradientStyle}>
+                    <td className="p-2 border border-gray-200 font-medium bg-cyan-50">
+                      <div className="flex items-center gap-2">
+                        <div className="w-6 h-6 bg-cyan-500 rounded flex items-center justify-center text-white text-xs">😊</div>
+                        <div>
+                          <div className="font-medium text-[#1C1C1E] text-xs">Satisfacción</div>
+                        </div>
+                      </div>
+                    </td>
+                    {satisfactionLevels.map((level, index) => (
+                      <td key={index} className="p-2 border border-gray-200 text-center bg-transparent">
+                        <div className="flex justify-center">
+                          <div className={`text-lg transition-transform duration-300 ${
+                            level === 'high' ? 'hover:scale-125' : 
+                            level === 'medium' ? 'hover:scale-110' : 'hover:scale-110'
+                          }`}>
+                            {level === 'high' ? '😊' : 
+                             level === 'medium' ? '😐' : '😞'}
+                          </div>
+                        </div>
+                      </td>
+                    ))}
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            {/* Insights */}
+            <div className="mt-8 p-6 bg-gradient-to-r from-[#24C88B]/10 to-[#007AFF]/10 rounded-2xl">
+              <h4 className="font-medium text-[#1C1C1E] mb-4">Insights Clave:</h4>
+              <ul className="space-y-2 text-sm text-[#1C1C1E]">
+                <li className="flex items-start gap-2">
+                  <div className="w-2 h-2 rounded-full bg-[#24C88B] mt-2 flex-shrink-0"></div>
+                  <span>El envío es el punto más crítico (baja satisfacción) - oportunidad de mejora</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <div className="w-2 h-2 rounded-full bg-[#24C88B] mt-2 flex-shrink-0"></div>
+                  <span>La recepción y primera prueba generan alta satisfacción - mantener expectativas</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <div className="w-2 h-2 rounded-full bg-[#24C88B] mt-2 flex-shrink-0"></div>
+                  <span>El registro puede ser complejo para adultos mayores - simplificar proceso</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <div className="w-2 h-2 rounded-full bg-[#24C88B] mt-2 flex-shrink-0"></div>
+                  <span>El uso diario y adaptación son clave para retención a largo plazo</span>
+                </li>
+              </ul>
+            </div>
+          </CardContent>
+        </Card>
       </div>
     )
   }
