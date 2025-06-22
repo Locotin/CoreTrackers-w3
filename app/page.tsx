@@ -13,9 +13,6 @@ import {
   Menu,
   X,
   Award,
-  Target,
-  TrendingUp,
-  Zap,
 } from "lucide-react"
 import { BusinessModelDiagram } from "@/components/custom/BusinessModelDiagram"
 import { HomeScreen } from "@/components/custom/HomeScreen"
