@@ -172,4 +172,4 @@ export function BusinessModelDiagram() {
       </ReactFlow>
     </div>
   )
-} 
+}
