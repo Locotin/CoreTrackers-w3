@@ -18,4 +18,4 @@ COPY . .
 EXPOSE 3000
 
 # Comando para iniciar el servidor de desarrollo
-CMD ["pnpm", "dev"] 
+CMD ["pnpm", "dev"]
