@@ -344,4 +344,4 @@ export function HomeScreen({ setSidebarOpen }: { setSidebarOpen: (open: boolean)
       </div>
     </div>
   )
-} 
+}
