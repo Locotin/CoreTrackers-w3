@@ -138,7 +138,7 @@ importers:
         specifier: latest
         version: 3.0.3(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       reactflow:
-        specifier: ^11.11.4
+        specifier: latest
         version: 11.11.4(@types/react@19.0.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       recharts:
         specifier: latest
