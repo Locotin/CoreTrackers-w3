@@ -20,6 +20,25 @@ import {
 import { BusinessModelDiagram } from "@/components/custom/BusinessModelDiagram"
 import { HomeScreen } from "@/components/custom/HomeScreen"
 
+const StatCard = ({ icon: Icon, value, label, color, size }) => (
+  <Card className="border-0 shadow-sm bg-white rounded-3xl">
+    <CardContent className="p-6 lg:p-8">
+      <div className="flex items-center gap-4">
+        <div
+          className="w-12 h-12 rounded-xl flex items-center justify-center"
+          style={{ backgroundColor: `${color}15` }}
+        >
+          <Icon className="h-6 w-6" style={{ color: color }} />
+        </div>
+        <div>
+          <div className="text-3xl font-light" style={{ color: color }}>{value}</div>
+          <div className="text-sm text-[#1C1C1E] opacity-60">{label}</div>
+        </div>
+      </div>
+    </CardContent>
+  </Card>
+)
+
 export default function PostureFitnessApp() {
   const [activeTab, setActiveTab] = useState("home")
   const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -177,25 +196,6 @@ export default function PostureFitnessApp() {
         ))}
       </div>
     </div>
-  )
-
-  const StatCard = ({ icon: Icon, value, label, color, size }) => (
-    <Card className="border-0 shadow-sm bg-white rounded-3xl">
-      <CardContent className="p-6 lg:p-8">
-        <div className="flex items-center gap-4">
-          <div
-            className="w-12 h-12 rounded-xl flex items-center justify-center"
-            style={{ backgroundColor: `${color}15` }}
-          >
-            <Icon className="h-6 w-6" style={{ color: color }} />
-          </div>
-          <div>
-            <div className="text-3xl font-light" style={{ color: color }}>{value}</div>
-            <div className="text-sm text-[#1C1C1E] opacity-60">{label}</div>
-          </div>
-        </div>
-      </CardContent>
-    </Card>
   )
 
   const StatsScreen = () => (
