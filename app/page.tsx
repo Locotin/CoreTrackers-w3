@@ -20,6 +20,7 @@ import { HomeScreen } from "@/components/custom/HomeScreen"
 export default function PostureFitnessApp() {
   const [activeTab, setActiveTab] = useState("home")
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [selectedImage, setSelectedImage] = useState<string | null>(null)
 
   const Sidebar = () => {
     const navItems = [
@@ -392,10 +393,51 @@ export default function PostureFitnessApp() {
           </CardContent>
         </Card>
 
+        {/* Moodboard */}
+        <Card className="border-0 shadow-sm bg-white rounded-3xl">
+          <CardContent className="p-6 lg:p-8">
+            <h2 className="text-2xl font-medium text-[#1C1C1E] mb-6 text-center">Moodboard</h2>
+            <div className="relative h-[900px] w-full max-w-6xl mx-auto">
+              {[
+                // Top Row
+                { src: "/image (1).png",   className: "absolute top-[0%] left-[2%] w-64 h-44 rotate-[-4deg]" },
+                { src: "/image (2).png",   className: "absolute top-[2%] left-[28%] w-64 h-48 rotate-[3deg]" },
+                { src: "/image (3).png",   className: "absolute top-[0%] left-[55%] w-64 h-44 rotate-[-3deg]" },
+                { src: "/image (4).png",   className: "absolute top-[5%] right-[-2%] w-60 h-52 rotate-[5deg]" },
+
+                // Middle Cluster
+                { src: "/image (5).png",   className: "absolute top-[30%] left-[5%] w-64 h-48 rotate-[4deg]" },
+                { src: "/image (6).png",   className: "absolute top-[58%] left-[5%] w-56 h-60 rotate-[-6deg]" },
+                { src: "/image.png",       className: "absolute top-[50%] right-[10%] w-60 h-52 rotate-[2deg]" },
+                { src: "/image (7).png",   className: "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[26rem] h-auto z-20 rotate-[-2deg]" },
+                { src: "/image (8).png",   className: "absolute top-[30%] right-[5%] w-64 h-48 rotate-[3deg]" },
+                
+                // Bottom Row
+                { src: "/image (9).png",   className: "absolute bottom-[0%] left-[22%] w-52 h-64 rotate-[6deg]" },
+                { src: "/image (10).png",  className: "absolute bottom-[0%] left-[41%] w-56 h-56 rotate-[-4deg]" },
+                { src: "/image (11).png",  className: "absolute bottom-[2%] right-[18%] w-60 h-52 rotate-[3deg]" },
+                { src: "/image (12).png",  className: "absolute bottom-[5%] right-[-2%] w-48 h-60 rotate-[-5deg]" },
+              ].map((image, index) => (
+                <div
+                  key={index}
+                  onClick={() => setSelectedImage(image.src.replace(/ /g, "%20"))}
+                  className={`${image.className} cursor-pointer shadow-xl rounded-lg bg-white p-1.5 transition-all duration-300 hover:scale-105 hover:z-20`}
+                >
+                  <img
+                    src={image.src.replace(/ /g, "%20")}
+                    alt={`Moodboard image ${index + 1}`}
+                    className="w-full h-full object-cover rounded-md"
+                  />
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+
         {/* Business Model Canvas */}
         <Card className="border-0 shadow-sm bg-white rounded-3xl">
           <CardContent className="p-6 lg:p-8">
-            <h2 className="text-2xl font-medium text-[#1C1C1E] mb-6">Modelo de Negocio</h2>
+            <h2 className="text-2xl font-medium text-[#1C1C1E] mb-6 text-center">Modelo de Negocio</h2>
             <BusinessModelDiagram />
           </CardContent>
         </Card>
@@ -452,7 +494,6 @@ export default function PostureFitnessApp() {
               <div className="text-4xl mb-4">👕</div>
               <h2 className="text-2xl font-medium text-[#1C1C1E] mb-2">Blueprint</h2>
               <h3 className="text-lg text-[#007AFF] mb-4">Camiseta de Postura Inteligente</h3>
-              <p className="text-sm text-[#1C1C1E] opacity-70">Mejorar la postura corporal mediante tecnología wearable</p>
             </div>
 
             {/* Journey Table */}
@@ -762,6 +803,20 @@ export default function PostureFitnessApp() {
 
       {/* Mobile Bottom Navigation */}
       <MobileBottomNav />
+
+      {/* Lightbox Modal */}
+      {selectedImage && (
+        <div
+          className="fixed inset-0 bg-black/80 z-[100] flex items-center justify-center p-4 cursor-pointer"
+          onClick={() => setSelectedImage(null)}
+        >
+          <img
+            src={selectedImage}
+            alt="Enlarged moodboard image"
+            className="max-w-full max-h-full rounded-lg shadow-2xl"
+          />
+        </div>
+      )}
     </div>
   )
 }
