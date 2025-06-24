@@ -27,6 +27,9 @@ const realColorImages: Record<string, { src: string; alt: string }> = {
     gray: { src: "/camisetagris.png", alt: "Camiseta color gris" },
 }
 
+// Formateador de precios en pesos colombianos
+const formatCOP = (value: number) => value.toLocaleString('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 })
+
 export function HeroSection() {
     const [selectedSize, setSelectedSize] = useState("m")
     const [selectedColor, setSelectedColor] = useState("black")
@@ -160,11 +163,11 @@ export function HeroSection() {
                         {/* Price */}
                         <div className="space-y-2">
                             <div className="flex items-center gap-3">
-                                <span className="text-gray-400 line-through text-lg">${originalPrice}</span>
+                                <span className="text-gray-400 line-through text-lg">{formatCOP(originalPrice)}</span>
                                 <Badge className="bg-[#24C88B] text-white">{discount}% OFF</Badge>
                             </div>
-                            <div className="text-4xl font-light text-[#1C1C1E]">$90.999</div>
-                            <div className="text-[#24C88B] font-medium">en 12 cuotas de €{Math.round(199 / 12)} sin interés</div>
+                            <div className="text-4xl font-light text-[#1C1C1E]">{formatCOP(Math.round(originalPrice * (1 - discount / 100)))}</div>
+                            <div className="text-[#24C88B] font-medium">en 12 cuotas de {formatCOP(Math.round((originalPrice * (1 - discount / 100)) / 12))} sin interés</div>
                             <button className="text-[#007AFF] text-sm hover:underline">Ver los medios de pago</button>
                         </div>
 
