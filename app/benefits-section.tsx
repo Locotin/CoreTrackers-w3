@@ -7,19 +7,19 @@ const benefits = [
     {
         title: "Antes",
         description: "Postura encorvada y dolor de espalda constante",
-        image: "/placeholder.svg?height=200&width=200",
+        image: "/antes.png",
         color: "#FF9F0A",
     },
     {
         title: "Durante",
         description: "Corrección suave en tiempo real sin interrupciones",
-        image: "/placeholder.svg?height=200&width=200",
+        image: "/durante.png",
         color: "#007AFF",
     },
     {
         title: "Después",
         description: "Postura natural y saludable como nuevo hábito",
-        image: "/placeholder.svg?height=200&width=200",
+        image: "/despues.png",
         color: "#24C88B",
     },
 ]
@@ -57,7 +57,8 @@ export function BenefitsSection() {
                                                 alt={benefit.title}
                                                 width={200}
                                                 height={200}
-                                                className="relative z-10 mx-auto group-hover:scale-110 transition-transform duration-300"
+                                                className="relative z-10 mx-auto group-hover:scale-110 transition-transform duration-300 -scale-x-100"
+                                                style={{ color: 'transparent' }}
                                             />
                                         </div>
                                         <h3 className="text-2xl font-medium mb-3 text-center" style={{ color: benefit.color }}>

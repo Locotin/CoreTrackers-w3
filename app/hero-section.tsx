@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Card, CardContent } from "@/components/ui/card"
-import { Star, Heart, Truck, Shield, Clock, MapPin } from "lucide-react"
+import { Star, Heart, Truck, Shield, Clock, MapPin, ChevronLeft, ChevronRight } from "lucide-react"
 import Image from "next/image"
 
 const sizes = [
@@ -21,14 +21,35 @@ const colors = [
     { id: "gray", name: "Gris", hex: "#8E8E93", available: true },
 ]
 
+const realColorImages: Record<string, { src: string; alt: string }> = {
+    black: { src: "/camisetanegra.png", alt: "Camiseta color negro" },
+    white: { src: "/camisetablanca.png", alt: "Camiseta color blanco" },
+    gray: { src: "/camisetagris.png", alt: "Camiseta color gris" },
+}
+
 export function HeroSection() {
     const [selectedSize, setSelectedSize] = useState("m")
     const [selectedColor, setSelectedColor] = useState("black")
     const [quantity, setQuantity] = useState(1)
     const [isFavorite, setIsFavorite] = useState(false)
+    const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
     const originalPrice = 109200
     const discount = 25
+
+    const camisetaImages = [
+        { src: "/camisetaadelante.png", alt: "Camiseta vista frontal" },
+        { src: "/camisetaatras.png", alt: "Camiseta vista trasera" },
+        { src: "/camisetaatras2.png", alt: "Camiseta vista trasera alternativa" }
+    ]
+
+    const nextImage = () => {
+        setCurrentImageIndex((prev) => (prev + 1) % camisetaImages.length)
+    }
+
+    const prevImage = () => {
+        setCurrentImageIndex((prev) => (prev - 1 + camisetaImages.length) % camisetaImages.length)
+    }
 
     return (
         <section className="bg-white py-8">
@@ -52,13 +73,54 @@ export function HeroSection() {
 
                                 <div className="relative">
                                     <div className="absolute inset-0 bg-[#24C88B] opacity-20 blur-3xl rounded-full transform scale-75"></div>
-                                    <Image
-                                        src="/placeholder.svg?height=500&width=400"
-                                        alt="Corrector de Postura Smart"
-                                        width={400}
-                                        height={500}
-                                        className="relative z-10 mx-auto"
-                                    />
+                                    
+                                    {/* Carrusel de imágenes */}
+                                    <div className="relative overflow-hidden rounded-2xl">
+                                        <div className="relative">
+                                            <Image
+                                                src={camisetaImages[currentImageIndex].src}
+                                                alt={camisetaImages[currentImageIndex].alt}
+                                                width={400}
+                                                height={500}
+                                                className="relative z-10 mx-auto rounded-2xl shadow-lg object-cover"
+                                                style={{ aspectRatio: '4/5', objectFit: 'cover', background: '#fff' }}
+                                            />
+                                            
+                                            {/* Botones de navegación */}
+                                            <Button
+                                                variant="ghost"
+                                                size="icon"
+                                                className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-700 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
+                                                onClick={prevImage}
+                                            >
+                                                <ChevronLeft className="h-5 w-5" />
+                                            </Button>
+                                            
+                                            <Button
+                                                variant="ghost"
+                                                size="icon"
+                                                className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-700 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
+                                                onClick={nextImage}
+                                            >
+                                                <ChevronRight className="h-5 w-5" />
+                                            </Button>
+                                        </div>
+                                        
+                                        {/* Indicadores de puntos */}
+                                        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+                                            {camisetaImages.map((_, index) => (
+                                                <button
+                                                    key={index}
+                                                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                                                        index === currentImageIndex 
+                                                            ? "bg-[#24C88B] scale-125" 
+                                                            : "bg-gray-300 hover:bg-gray-400"
+                                                    }`}
+                                                    onClick={() => setCurrentImageIndex(index)}
+                                                />
+                                            ))}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -78,7 +140,6 @@ export function HeroSection() {
                             <h1 className="text-3xl lg:text-4xl font-light text-[#1C1C1E] leading-tight mb-2">
                                 Corrector de Postura Smart Pro
                                 <br />
-                                <span className="text-xl text-gray-600">Detección IA + Impulsos Suaves</span>
                             </h1>
 
                             {/* Rating */}
@@ -107,22 +168,35 @@ export function HeroSection() {
                             <button className="text-[#007AFF] text-sm hover:underline">Ver los medios de pago</button>
                         </div>
 
-                        {/* Color Selection */}
+                        {/* Selector visual de color con fotos reales */}
                         <div className="space-y-3">
-                            <h3 className="font-medium text-[#1C1C1E]">Color: {colors.find((c) => c.id === selectedColor)?.name}</h3>
-                            <div className="flex gap-3">
-                                {colors.map((color) => (
+                            <h3 className="font-medium text-[#1C1C1E]">Color:</h3>
+                            <div className="flex gap-4 items-end">
+                                {[
+                                    { id: "black", name: "Negro", src: "/camisetanegra.png" },
+                                    { id: "white", name: "Blanco", src: "/camisetablanca.png" },
+                                    { id: "gray", name: "Gris", src: "/camisetagris.png" },
+                                ].map((color) => (
                                     <button
                                         key={color.id}
-                                        className={`w-12 h-12 rounded-xl border-2 transition-all duration-200 ${selectedColor === color.id
-                                            ? "border-[#24C88B] shadow-lg scale-110"
-                                            : "border-gray-200 hover:border-gray-300"
-                                            } ${!color.available ? "opacity-50 cursor-not-allowed" : ""}`}
-                                        style={{ backgroundColor: color.hex }}
-                                        onClick={() => color.available && setSelectedColor(color.id)}
-                                        disabled={!color.available}
+                                        type="button"
+                                        onClick={() => setSelectedColor(color.id)}
+                                        className={`flex flex-col items-center focus:outline-none transition-all duration-200 ${
+                                            selectedColor === color.id
+                                                ? "ring-2 ring-[#24C88B] scale-105 shadow-lg"
+                                                : "opacity-70 hover:opacity-100 hover:scale-105"
+                                        }`}
                                     >
-                                        {color.hex === "#FFFFFF" && <div className="w-full h-full rounded-lg border border-gray-200"></div>}
+                                        <div className="w-20 h-28 rounded-xl overflow-hidden border border-gray-200 bg-white flex items-center justify-center mb-1">
+                                            <Image
+                                                src={color.src}
+                                                alt={`Camiseta color ${color.name}`}
+                                                width={80}
+                                                height={112}
+                                                className="object-cover w-full h-full"
+                                            />
+                                        </div>
+                                        <span className="text-xs text-gray-700 font-medium">{color.name}</span>
                                     </button>
                                 ))}
                             </div>
