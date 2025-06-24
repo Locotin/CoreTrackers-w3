@@ -1,5 +1,9 @@
 "use client"
-
+import { HeroSection } from "./hero-section"
+import { BenefitsSection } from "./benefits-section"
+import { SpecsSection } from "./specs-section"
+import { ProgressSection } from "./progress-section"
+import { FAQSection } from "./faq-section"
 import { useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -16,6 +20,7 @@ import {
   Target,
   TrendingUp,
   Zap,
+  ShoppingBag
 } from "lucide-react"
 import { BusinessModelDiagram } from "@/components/custom/BusinessModelDiagram"
 import { HomeScreen } from "@/components/custom/HomeScreen"
@@ -51,32 +56,31 @@ export default function PostureFitnessApp() {
       { id: "stats", icon: BarChart3, label: "Estadísticas" },
       { id: "profile", icon: User, label: "Perfil" },
       { id: "about", icon: Award, label: "Sobre Nosotros" },
+      { id: "store", icon: ShoppingBag, label: "Compra" }
     ]
 
     return (
       <>
         {/* Overlay for all screen sizes */}
         <div
-          className={`fixed inset-0 bg-black/50 z-40 transition-all duration-500 ease-in-out backdrop-blur-sm ${
-            sidebarOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-          }`}
+          className={`fixed inset-0 bg-black/50 z-40 transition-all duration-500 ease-in-out backdrop-blur-sm ${sidebarOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+            }`}
           onClick={() => setSidebarOpen(false)}
         />
 
         {/* Sidebar/Navbar */}
         <div
-          className={`fixed left-0 top-0 h-full w-64 bg-white shadow-2xl z-50 transform transition-transform duration-500 ease-in-out ${
-            sidebarOpen ? "translate-x-0" : "-translate-x-full"
-          }`}
+          className={`fixed left-0 top-0 h-full w-64 bg-white shadow-2xl z-50 transform transition-transform duration-500 ease-in-out ${sidebarOpen ? "translate-x-0" : "-translate-x-full"
+            }`}
         >
           <div className={`flex flex-col h-full`}>
             {/* Header */}
             <div className={`p-6 border-b border-gray-100 bg-gradient-to-r from-[#24C88B]/10 to-[#007AFF]/10`}>
               <div className="flex items-center justify-between">
                 <h1 className={`text-xl font-semibold text-[#1C1C1E] hover:scale-105`}>CoreTrackers</h1>
-                <Button 
-                  variant="ghost" 
-                  size="icon" 
+                <Button
+                  variant="ghost"
+                  size="icon"
                   onClick={() => setSidebarOpen(false)}
                   className={`rounded-full hover:bg-red-100 hover:text-red-600 transition-all duration-300 hover:scale-110`}
                 >
@@ -95,15 +99,13 @@ export default function PostureFitnessApp() {
                         setActiveTab(item.id)
                         setSidebarOpen(false)
                       }}
-                      className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg ${
-                        activeTab === item.id
-                          ? "bg-gradient-to-r from-[#24C88B] to-[#007AFF] text-white shadow-lg scale-105"
-                          : "text-[#1C1C1E] opacity-60 hover:opacity-100 hover:bg-gradient-to-r hover:from-[#24C88B]/10 hover:to-[#007AFF]/10"
-                      }`}
+                      className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg ${activeTab === item.id
+                        ? "bg-gradient-to-r from-[#24C88B] to-[#007AFF] text-white shadow-lg scale-105"
+                        : "text-[#1C1C1E] opacity-60 hover:opacity-100 hover:bg-gradient-to-r hover:from-[#24C88B]/10 hover:to-[#007AFF]/10"
+                        }`}
                     >
-                      <item.icon className={`h-5 w-5 transition-all duration-300 ${
-                        activeTab === item.id ? 'animate-pulse' : 'hover:scale-110'
-                      }`} />
+                      <item.icon className={`h-5 w-5 transition-all duration-300 ${activeTab === item.id ? 'animate-pulse' : 'hover:scale-110'
+                        }`} />
                       <span className="font-medium">{item.label}</span>
                     </button>
                   </li>
@@ -130,6 +132,7 @@ export default function PostureFitnessApp() {
       { id: "stats", icon: BarChart3, label: "Estadísticas" },
       { id: "profile", icon: User, label: "Perfil" },
       { id: "about", icon: Award, label: "Nosotros" },
+      { id: "store", icon: ShoppingBag, label: "Compra" }
     ]
 
     return (
@@ -139,9 +142,8 @@ export default function PostureFitnessApp() {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex flex-col items-center gap-1 py-2 px-4 rounded-xl transition-all duration-200 ${
-                activeTab === tab.id ? "text-[#24C88B] bg-[#24C88B]/10" : "text-[#1C1C1E] opacity-60 hover:opacity-100"
-              }`}
+              className={`flex flex-col items-center gap-1 py-2 px-2 rounded-xl transition-all duration-200 ${activeTab === tab.id ? "text-[#24C88B] bg-[#24C88B]/10" : "text-[#1C1C1E] opacity-60 hover:opacity-100"
+                }`}
             >
               <tab.icon className="h-5 w-5" />
               <span className="text-xs font-medium">{tab.label}</span>
@@ -422,23 +424,23 @@ export default function PostureFitnessApp() {
             <div className="relative h-[900px] w-full max-w-6xl mx-auto">
               {[
                 // Top Row
-                { src: "/image (1).png",   className: "absolute top-[0%] left-[2%] w-64 h-44 rotate-[-4deg]" },
-                { src: "/image (2).png",   className: "absolute top-[2%] left-[28%] w-64 h-48 rotate-[3deg]" },
-                { src: "/image (3).png",   className: "absolute top-[0%] left-[55%] w-64 h-44 rotate-[-3deg]" },
-                { src: "/image (4).png",   className: "absolute top-[5%] right-[-2%] w-60 h-52 rotate-[5deg]" },
+                { src: "/image (1).png", className: "absolute top-[0%] left-[2%] w-64 h-44 rotate-[-4deg]" },
+                { src: "/image (2).png", className: "absolute top-[2%] left-[28%] w-64 h-48 rotate-[3deg]" },
+                { src: "/image (3).png", className: "absolute top-[0%] left-[55%] w-64 h-44 rotate-[-3deg]" },
+                { src: "/image (4).png", className: "absolute top-[5%] right-[-2%] w-60 h-52 rotate-[5deg]" },
 
                 // Middle Cluster
-                { src: "/image (5).png",   className: "absolute top-[30%] left-[5%] w-64 h-48 rotate-[4deg]" },
-                { src: "/image (6).png",   className: "absolute top-[58%] left-[5%] w-56 h-60 rotate-[-6deg]" },
-                { src: "/image.png",       className: "absolute top-[50%] right-[10%] w-60 h-52 rotate-[2deg]" },
-                { src: "/image (7).png",   className: "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[26rem] h-auto z-20 rotate-[-2deg]" },
-                { src: "/image (8).png",   className: "absolute top-[30%] right-[5%] w-64 h-48 rotate-[3deg]" },
-                
+                { src: "/image (5).png", className: "absolute top-[30%] left-[5%] w-64 h-48 rotate-[4deg]" },
+                { src: "/image (6).png", className: "absolute top-[58%] left-[5%] w-56 h-60 rotate-[-6deg]" },
+                { src: "/image.png", className: "absolute top-[50%] right-[10%] w-60 h-52 rotate-[2deg]" },
+                { src: "/image (7).png", className: "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[26rem] h-auto z-20 rotate-[-2deg]" },
+                { src: "/image (8).png", className: "absolute top-[30%] right-[5%] w-64 h-48 rotate-[3deg]" },
+
                 // Bottom Row
-                { src: "/image (9).png",   className: "absolute bottom-[0%] left-[22%] w-52 h-64 rotate-[6deg]" },
-                { src: "/image (10).png",  className: "absolute bottom-[0%] left-[41%] w-56 h-56 rotate-[-4deg]" },
-                { src: "/image (11).png",  className: "absolute bottom-[2%] right-[18%] w-60 h-52 rotate-[3deg]" },
-                { src: "/image (12).png",  className: "absolute bottom-[5%] right-[-2%] w-48 h-60 rotate-[-5deg]" },
+                { src: "/image (9).png", className: "absolute bottom-[0%] left-[22%] w-52 h-64 rotate-[6deg]" },
+                { src: "/image (10).png", className: "absolute bottom-[0%] left-[41%] w-56 h-56 rotate-[-4deg]" },
+                { src: "/image (11).png", className: "absolute bottom-[2%] right-[18%] w-60 h-52 rotate-[3deg]" },
+                { src: "/image (12).png", className: "absolute bottom-[5%] right-[-2%] w-48 h-60 rotate-[-5deg]" },
               ].map((image, index) => (
                 <div
                   key={index}
@@ -471,28 +473,16 @@ export default function PostureFitnessApp() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {[
                 {
-                  quote: "La tecnología de CoreTrackers representa un avance significativo en la prevención de problemas posturales. Su enfoque proactivo puede reducir significativamente los costos de salud laboral.",
+                  quote: "Desde el punto de vista médico y fisioterapeuta, la camisa que estimula la postura mientras los impulsos eléctricos lo vemos muy viable y prometedora, sobre todo en un contexto más para la prevención de transtornos músculosqueleticos [...], nos llama mucho la atención de que tendría mejor una mejor aplicabilidad en lo que sería más bien para población joven diríamos nosotros con malos hábitos posturales como estudiantes mayormente y en ciertos grupos clínicos como pacientes de recuperación postural tras inmovilizaciones prolongadas",
                   author: "Dr. María Elena Sánchez",
-                  title: "Especialista en Medicina del Trabajo",
-                  organization: "Hospital Universitario de Madrid"
+                  title: "Estudiante y practicante en ortopedia",
+                  organization: "Universidad Nacional de Colombia"
                 },
                 {
-                  quote: "Como fisioterapeuta, veo el potencial de este dispositivo para complementar la terapia tradicional. La retroalimentación en tiempo real es invaluable para el paciente.",
+                  quote: "Pues he visto los corrector de postura y el problema del corrector de postura es que al momento tú te lo pones y tú puedes hacer como super derecho y todo, pero más que cuando te lo quitas ya no va a estar porque no hay una activación específica de los músculos que se buscan. [...] Entonces digamos que para mí sería bueno, pero igualmente llega un punto en el que tú tienes que también trabajarle a sus músculos para que tú puedas tener esa postura correcta ",
                   author: "Lic. Roberto Jiménez",
                   title: "Fisioterapeuta Especialista",
                   organization: "Clínica de Rehabilitación Integral"
-                },
-                {
-                  quote: "La integración de IoT con salud preventiva es el futuro. CoreTrackers está en la vanguardia de esta revolución tecnológica.",
-                  author: "Ing. Patricia Morales",
-                  title: "Directora de Innovación Tecnológica",
-                  organization: "Instituto de Tecnología Avanzada"
-                },
-                {
-                  quote: "Los datos muestran que el 70% de los problemas de espalda se pueden prevenir. Esta solución tecnológica puede cambiar las estadísticas.",
-                  author: "Dr. Alejandro Torres",
-                  title: "Investigador en Biomecánica",
-                  organization: "Universidad Nacional de Ciencias de la Salud"
                 }
               ].map((expert, index) => (
                 <div key={index} className="p-6 rounded-2xl bg-gradient-to-br from-gray-50 to-[#24C88B]/5 border border-[#24C88B]/10">
@@ -530,7 +520,7 @@ export default function PostureFitnessApp() {
                     <th colSpan={9} className="bg-gradient-to-r from-[#007AFF] via-[#24C88B] to-[#007AFF] text-white p-2 text-center text-xs font-medium">
                       <div className="flex justify-between items-center">
                         {[
-                          "Descubrimiento", "Investigación", "Compra", "Envío", 
+                          "Descubrimiento", "Investigación", "Compra", "Envío",
                           "Recepción", "Primera Prueba", "Registro", "Uso Diario", "Adaptación"
                         ].map((phase, index) => (
                           <span key={index} className="flex-1 text-center">
@@ -541,7 +531,7 @@ export default function PostureFitnessApp() {
                     </th>
                   </tr>
                 </thead>
-                
+
                 <tbody>
                   {/* Necesidades Row */}
                   <tr className="bg-green-50">
@@ -749,15 +739,14 @@ export default function PostureFitnessApp() {
                         </div>
                       </div>
                     </td>
-                    {[ "medium", "medium", "medium", "low", "high", "high", "medium", "high", "high"].map((level, index) => (
+                    {["medium", "medium", "medium", "low", "high", "high", "medium", "high", "high"].map((level, index) => (
                       <td key={index} className="p-2 border border-gray-200 text-center bg-transparent">
                         <div className="flex justify-center">
-                          <div className={`text-lg transition-transform duration-300 ${
-                            level === 'high' ? 'hover:scale-125' : 
+                          <div className={`text-lg transition-transform duration-300 ${level === 'high' ? 'hover:scale-125' :
                             level === 'medium' ? 'hover:scale-110' : 'hover:scale-110'
-                          }`}>
-                            {level === 'high' ? '😊' : 
-                             level === 'medium' ? '😐' : '😞'}
+                            }`}>
+                            {level === 'high' ? '😊' :
+                              level === 'medium' ? '😐' : '😞'}
                           </div>
                         </div>
                       </td>
@@ -794,7 +783,25 @@ export default function PostureFitnessApp() {
       </div>
     )
   }
-
+  const StoreScreen = () => {
+    return (
+      <>
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center gap-4">
+            <Button variant="ghost" size="icon" className="rounded-full" onClick={() => setSidebarOpen(true)}>
+              <Menu className="h-5 w-5 text-[#1C1C1E]" />
+            </Button>
+            <h1 className="text-2xl lg:text-3xl font-light text-[#1C1C1E]">Compra nuestro producto</h1>
+          </div>
+        </div>
+        <HeroSection />
+        <BenefitsSection />
+        <SpecsSection />
+        <ProgressSection />
+        <FAQSection />
+      </>
+    )
+  }
   const renderScreen = () => {
     switch (activeTab) {
       case "home":
@@ -807,6 +814,8 @@ export default function PostureFitnessApp() {
         return <ProfileScreen />
       case "about":
         return <AboutScreen />
+      case "store":
+        return <StoreScreen />
       default:
         return <HomeScreen setSidebarOpen={setSidebarOpen} />
     }
@@ -815,11 +824,10 @@ export default function PostureFitnessApp() {
   return (
     <div className="min-h-screen bg-[#F4F5F7] relative overflow-x-hidden">
       <Sidebar />
-      
+
       {/* Main Content */}
-      <div className={`flex-1 transform transition-all duration-500 ease-in-out ${
-        sidebarOpen ? 'translate-x-64' : 'translate-x-0'
-      }`}>
+      <div className={`flex-1 transform transition-all duration-500 ease-in-out ${sidebarOpen ? 'translate-x-64' : 'translate-x-0'
+        }`}>
         <div className="p-4 md:p-6 lg:p-8 pt-6 md:pt-8 lg:pt-12 max-w-7xl mx-auto">{renderScreen()}</div>
       </div>
 
